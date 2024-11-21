@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect, useReducer } from "react";
-
 export const CartContext = createContext({
     items: [],
     products: [],
@@ -11,11 +10,9 @@ export const CartContext = createContext({
 });
 
 export default function CartContextProvider({ children }) {
-
     const [products, setProducts] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-
     useEffect(() => {
         async function fetchProducts() {
             setLoading(true);
@@ -28,7 +25,6 @@ export default function CartContextProvider({ children }) {
             }
             setLoading(false);
         }
-
         fetchProducts();
     }, []);
 
@@ -42,7 +38,6 @@ export default function CartContextProvider({ children }) {
             const existingCartItemIndex = updatedItems.findIndex(
                 (item) => item.id === action.payload.id
             );
-
             const existingCartItem = updatedItems[existingCartItemIndex];
 
             if (existingCartItem) {
@@ -109,6 +104,7 @@ export default function CartContextProvider({ children }) {
 
             updatedItem.quantity += action.payload.amount;
 
+
             if (updatedItem.quantity < 1) {
                 updatedItems.splice(updatedItemIndex, 1);
             } else {
@@ -146,7 +142,6 @@ export default function CartContextProvider({ children }) {
             payload: { id, products }
         });
     }
-
     const ctx = {
         items: cartState.items,
         products: products,
@@ -156,9 +151,12 @@ export default function CartContextProvider({ children }) {
         updateItemQuantity: handleUpdateCartItemQuantity,
         subItemToCart: handleSubItemToCart
     };
-
     return <CartContext.Provider value={ctx}>
         {children}
     </CartContext.Provider>
 
+
 }
+
+
+
