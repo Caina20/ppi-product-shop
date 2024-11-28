@@ -15,7 +15,7 @@ export default function CartContextProvider({ children }) {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    //useEffect(() => {
+    useEffect(() => {
         aysnc function getProducts()}
        setLoading(true);
        const {data: products, error} = await supabase.from("products").select();
