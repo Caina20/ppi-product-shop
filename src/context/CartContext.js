@@ -17,9 +17,10 @@ export default function CartContextProvider({ children }) {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        async function fetchProducts() {
+       
+       async function fetchProducts() {
             setLoading(true);
-            const response = await fetch("https://dummyjson.com/products/category/motorcycle?limit=12&select=id,thumbnail,title,price,description");
+           const response = await fetch("https://dummyjson.com/products/category/motorcycle?limit=12&select=id,thumbnail,title,price,description");
             if (response.ok) {
                 const result = await response.json();
                 setProducts(result.products);
